@@ -20,7 +20,22 @@ button {
   height: 30px;
   font-size: 0.8em;
 	color: #FFF;
+	cursor: pointer;
+	margin: 5px;
 }
+
+input,
+textarea {
+	border-radius: 3px;
+	border: 1px solid #CCC;
+	padding: 3px;
+	font-size: 0.8em;
+}
+
+p {
+	font-size: 0.9em;
+}
+
 
 /* new css */
 /*$aqua: #7FDBFF;
@@ -71,6 +86,7 @@ a {
 
 .recipe-listing .detail-toggle {
 	cursor: pointer;
+	user-select: none;
 }
 
 .recipe-details {
@@ -127,15 +143,34 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .new-recipe-form {
+
+	animation-duration: 3s;
+  animation-name: slidein;
+
+	
   position: absolute;
   margin-top: 200px;
   padding: 0 15px;
-  width: 50%;
+	min-width: 450px;
+	text-align: left;
+  /*width: 50%;*/
   background-color: $gray;
   z-index: 3;
+	border: 1px solid #616161;
+	border-radius: 7px;
+	background-color: #FFF;
+}
+
+.new-recipe-form input {
+	width: 90%;
+}
+
+.new-recipe-form textarea {
+	width: 90%;
 }
 
 /*// .new-recipe-header {
@@ -178,4 +213,23 @@ a {
 
 .AddRecipe:hover {
 	background-color: #001f3f;
+}
+
+.new-recipe-footer {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.add-recipe-button {
+	background-color: #337AB7;
+	width: 120px;
+}
+
+.add-recipe-button:hover {
+	background-color: #001f3f;
+}
+
+.close-form-button {
+	color: #000;
 }

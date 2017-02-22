@@ -35,8 +35,9 @@ class NewRecipeForm extends Component {
 							value={this.state.textareaText}
 							onChange={(event) => this.setState({ textareaText: event.target.value })}></textarea>
 					</div>
-					<div id="new-recipe-footer">
-						<p>Add a Recipe</p>
+					<div className="new-recipe-footer">
+						<button className="add-recipe-button">Add a Recipe</button>
+						<button className="close-form-button">Close</button>
 					</div>
 				</div>
 			)

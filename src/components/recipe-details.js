@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react';
+import NewRecipeForm from './new-recipe-form';
 
 class RecipeDetails extends Component {
 	constructor(props) {
@@ -9,7 +11,8 @@ class RecipeDetails extends Component {
 	}
 
 	handleEdit() {
-
+			// also needs a name
+			ReactDOM.render(<NewRecipeForm details={this.props.ingredients} />, document.getElementById('new-container'));
 	}
 
 	handleDelete() {

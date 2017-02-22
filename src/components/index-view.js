@@ -12,7 +12,6 @@ class IndexView extends Component {
 					{this.props.recipeBank.map((item) =>
 						// <li>{item.name}</li>
 						<RecipeListing key={item.name} name={item.name} ingredients={item.ingredients} />
-
 					)}
 				</ul>
 			</div>
