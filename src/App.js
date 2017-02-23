@@ -11,6 +11,10 @@ class App extends Component {
 		this.state = { recipes: localStorageTest };
 	}
 
+	componentWillUnmount() {
+		localStorage = this.state.recipes;
+	}
+
 	deleteRecipe() {
 
 	}

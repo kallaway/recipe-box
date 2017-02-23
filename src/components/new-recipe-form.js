@@ -8,15 +8,33 @@ class NewRecipeForm extends Component {
 			inputText: '',
 			textareaText: ''
 		}
+
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	closeNewRecipeForm() {
 		ReactDOM.unmountComponentAtNode(document.getElementById('new-container'));
 	}
 
+	handleSubmit(event) {
+		event.preventDefault(); // making sure it doesn't submit right away
+		console.log("Handle Submit runs");
+		console.log("EVENT");
+		console.log(event);
+		// Change local storage to the file that was submitted.
+		localStorage.push({
+			title: 'newrecipe',
+			ingredients: this.getIngredientsFromString('a, b, c')
+		});
+	}
+
+	getIngredientsFromString(str) {
+		return str.split(",").map(ingredient => ingredient.trim());
+	}
+
 	render() {
 		return (
-			<div className="new-recipe-form">
+			<form className="new-recipe-form" onSubmit={this.handleSubmit}>
 				<div id="new-recipe-header">
 					<p>Add a Recipe</p>
 					<i className="fa fa-times close-form" aria-hidden="true" onClick={this.closeNewRecipeForm}></i>
@@ -36,10 +54,10 @@ class NewRecipeForm extends Component {
 							onChange={(event) => this.setState({ textareaText: event.target.value })}></textarea>
 					</div>
 					<div className="new-recipe-footer">
-						<button className="add-recipe-button">Add a Recipe</button>
+						<button type="submit" className="add-recipe-button">Add a Recipe</button>
 						<button className="close-form-button">Close</button>
 					</div>
-				</div>
+				</form>
 			)
 		}
 	}
