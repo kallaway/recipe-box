@@ -8,11 +8,23 @@ import AddRecipe from './components/add-recipe';
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { recipes: localStorageTest };
+		this.state = { recipes: '' };
 	}
 
+	// componentWillMount() {
+	// 	this.setState({
+	// 		recipes: localStorage.getItem('recipes')
+	// 	})
+	// 	console.log("component Will Mount runs for app, and recipes is:");
+	// 	console.log(this.state.recipes);
+	// 	console.log(localStorage.getItem('recipes'));
+	// }
+
 	componentWillUnmount() {
-		localStorage = this.state.recipes;
+		localStorage.
+		localStorage.setItem('recipes', this.state.recipes);
+		console.log("component Will UNMount runs for app, and recipes is:");
+		console.log(this.state.recipes);
 	}
 
 	deleteRecipe() {
@@ -41,9 +53,9 @@ class App extends Component {
 // </div>
 
 
-var localStorageTest = localStorage;
+// var localStorageTest = localStorage;
 
-localStorageTest = [
+var localStorageTest = [
   {
     name: 'Pumpkin Pie',
     ingredients: [
@@ -71,5 +83,7 @@ localStorageTest = [
     ]
   }
 ];
+
+localStorage.setItem('recipes', localStorageTest);
 
 export default App;

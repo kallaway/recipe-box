@@ -22,9 +22,11 @@ class NewRecipeForm extends Component {
 		console.log("EVENT");
 		console.log(event);
 		// Change local storage to the file that was submitted.
+
+		// use a callback function?
 		localStorage.push({
-			title: 'newrecipe',
-			ingredients: this.getIngredientsFromString('a, b, c')
+			title: this.state.inputText,
+			ingredients: this.getIngredientsFromString(this.state.textareaText)
 		});
 	}
 
