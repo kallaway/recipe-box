@@ -9,7 +9,6 @@ class AddRecipe extends Component {
 		super(props);
 
 		this.openRecipeForm = this.openRecipeForm.bind(this);
-
 		this.keyCounter = 0;
 	}
 

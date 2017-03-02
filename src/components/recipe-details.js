@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react';
+import ReactDOM from 'react-dom';
 import NewRecipeForm from './new-recipe-form';
 
 class RecipeDetails extends Component {
@@ -37,7 +37,6 @@ class RecipeDetails extends Component {
 					<button className="delete-btn" onClick={this.handleDelete}>Delete</button>
 					<button className="edit-btn" onClick={this.handleEdit}>Edit</button>
 				</div>
-
 			</div>
 		)
 	}
