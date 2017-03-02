@@ -23,11 +23,21 @@ class NewRecipeForm extends Component {
 		console.log(event);
 		// Change local storage to the file that was submitted.
 
-		// use a callback function?
-		localStorage.push({
+		var newRecipeDetails = {
 			title: this.state.inputText,
 			ingredients: this.getIngredientsFromString(this.state.textareaText)
-		});
+		};
+		// use a callback function?
+		this.props.addRecipe(newRecipeDetails);
+		//
+		// localStorage.setItem({
+		// 	title: this.state.inputText,
+		// 	ingredients: this.getIngredientsFromString(this.state.textareaText)
+		// });
+
+		//add a check - if there is no title or no ingredients, don't add them to the table.
+		// add submission on Enter?
+		this.closeNewRecipeForm();
 	}
 
 	getIngredientsFromString(str) {
@@ -57,7 +67,7 @@ class NewRecipeForm extends Component {
 					</div>
 					<div className="new-recipe-footer">
 						<button type="submit" className="add-recipe-button">Add a Recipe</button>
-						<button className="close-form-button">Close</button>
+						<button className="close-form-button" onClick={this.closeNewRecipeForm}>Close</button>
 					</div>
 				</form>
 			)

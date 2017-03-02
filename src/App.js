@@ -5,23 +5,30 @@ import './App.css';
 import IndexView from './components/index-view';
 import AddRecipe from './components/add-recipe';
 
+import originalRecipes from './data/original-recipes';
+
+var localStorageTest = originalRecipes;
+
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { recipes: '' };
+
+		this.addRecipe = this.addRecipe.bind(this);
 	}
 
-	// componentWillMount() {
-	// 	this.setState({
-	// 		recipes: localStorage.getItem('recipes')
-	// 	})
-	// 	console.log("component Will Mount runs for app, and recipes is:");
-	// 	console.log(this.state.recipes);
-	// 	console.log(localStorage.getItem('recipes'));
-	// }
+	componentWillMount() {
+		this.setState({
+			// recipes: localStorage.getItem('recipes')
+			recipes: localStorageTest
+		})
+		console.log("component Will Mount runs for app, and recipes is:");
+		console.log(this.state.recipes);
+		console.log(localStorage.getItem('recipes'));
+	}
 
 	componentWillUnmount() {
-		localStorage.
+		// localStorage.
 		localStorage.setItem('recipes', this.state.recipes);
 		console.log("component Will UNMount runs for app, and recipes is:");
 		console.log(this.state.recipes);
@@ -29,6 +36,20 @@ class App extends Component {
 
 	deleteRecipe() {
 
+	}
+
+	addRecipe(recipeInfo) {
+		var updatedRecipes = this.state.recipes;
+		updatedRecipes.push({
+	    name: recipeInfo.title,
+	    ingredients: recipeInfo.ingredients
+	  });
+
+		this.setState({
+			recipes: updatedRecipes
+		})
+
+		// After it adds a recipe it should also close the form down
 	}
 
   render() {
@@ -41,7 +62,7 @@ class App extends Component {
 			</div>
 				<div id="root"></div>
 				<IndexView recipeBank={this.state.recipes}/>
-				<AddRecipe />
+				<AddRecipe addRecipe={this.addRecipe} />
       </div>
     );
   }
@@ -55,34 +76,34 @@ class App extends Component {
 
 // var localStorageTest = localStorage;
 
-var localStorageTest = [
-  {
-    name: 'Pumpkin Pie',
-    ingredients: [
-      'Pumpkin Puree',
-      'Sweetened Condensed Milk',
-      'Eggs',
-      'Pumpkin Pie Spice',
-      'Pie Crust'
-    ]
-  },
-  {
-    name: 'Spaghetti',
-    ingredients: [
-      'Noodles',
-      'Tomato Sauce',
-      '(Optional) Meatballs'
-    ]
-  },
-  {
-    name: 'Onion Pie',
-    ingredients: [
-      'Onion',
-      'Pie Crust',
-      'Sounds Yummy right?'
-    ]
-  }
-];
+// var localStorageTest = [
+//   {
+//     name: 'Pumpkin Pie',
+//     ingredients: [
+//       'Pumpkin Puree',
+//       'Sweetened Condensed Milk',
+//       'Eggs',
+//       'Pumpkin Pie Spice',
+//       'Pie Crust'
+//     ]
+//   },
+//   {
+//     name: 'Spaghetti',
+//     ingredients: [
+//       'Noodles',
+//       'Tomato Sauce',
+//       '(Optional) Meatballs'
+//     ]
+//   },
+//   {
+//     name: 'Onion Pie',
+//     ingredients: [
+//       'Onion',
+//       'Pie Crust',
+//       'Sounds Yummy right?'
+//     ]
+//   }
+// ];
 
 localStorage.setItem('recipes', localStorageTest);
 

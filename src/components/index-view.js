@@ -4,12 +4,14 @@ import RecipeListing from './recipe-listing';
 class IndexView extends Component {
 
 	render() {
-		var localStorageTest = [{ key: "1", name: 'Lala' }];
+		// var localStorageTest = [{ key: "1", name: 'Lala' }];
 
 
-		if (!this.props.recipeBank === '') {
+		if (this.props.recipeBank === '') {
 			return <div>Loading...</div>
 		} else {
+			console.log('This is what RecipeBox is currently is');
+			console.log(typeof this.props.recipeBank);
 			return (
 				<div className="IndexView">
 					<ul id="IndexViewList">
