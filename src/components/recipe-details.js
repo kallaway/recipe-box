@@ -15,8 +15,13 @@ class RecipeDetails extends Component {
 			ReactDOM.render(<NewRecipeForm details={this.props.ingredients} />, document.getElementById('new-container'));
 	}
 
-	handleDelete() {
-
+	handleDelete(event) {
+		var recipeDetails = {
+			title: this.props.name,
+			ingredients: this.props.ingredients // might not be needed
+		}
+		console.log("Handle Delete runs inside the Recipe Details");
+		this.props.deleteRecipe(recipeDetails);
 	}
 
 	render() {

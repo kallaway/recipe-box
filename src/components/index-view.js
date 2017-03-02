@@ -3,10 +3,13 @@ import RecipeListing from './recipe-listing';
 
 class IndexView extends Component {
 
+	constructor(props) {
+		super(props);
+
+	}
+
 	render() {
 		// var localStorageTest = [{ key: "1", name: 'Lala' }];
-
-
 		if (this.props.recipeBank === '') {
 			return <div>Loading...</div>
 		} else {
@@ -17,7 +20,7 @@ class IndexView extends Component {
 					<ul id="IndexViewList">
 						{this.props.recipeBank.map((item) =>
 							// <li>{item.name}</li>
-							<RecipeListing key={item.name} name={item.name} ingredients={item.ingredients} />
+							<RecipeListing deleteRecipe={this.props.deleteRecipe} key={item.name} name={item.name} ingredients={item.ingredients} />
 						)}
 					</ul>
 				</div>

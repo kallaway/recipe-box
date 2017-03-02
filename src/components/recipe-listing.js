@@ -28,7 +28,7 @@ class RecipeListing extends Component {
 			return (
 				<li className="recipe-listing">
 					<div className="detail-toggle" onClick={this.toggleDetails.bind(this)}>{this.props.name}</div>
-					<RecipeDetails ingredients={this.props.ingredients} />
+					<RecipeDetails deleteRecipe={this.props.deleteRecipe} ingredients={this.props.ingredients} name={this.props.name} />
 				</li>
 			);
 		}
