@@ -6,29 +6,63 @@ class NewRecipeForm extends Component {
 		super();
 		this.state = {
 			inputText: '',
-			textareaText: ''
+			textareaText: '',
+			originalName: ''
 		}
 
+		this.recipeToEdit;
+
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.isExistingRecipe = this.isExistingRecipe.bind(this);
+		this.buildStringFromIngredients = this.buildStringFromIngredients.bind(this);
 	}
 
 	closeNewRecipeForm() {
 		ReactDOM.unmountComponentAtNode(document.getElementById('new-container'));
 	}
 
+	componentWillMount() {
+		this.setState({
+			originalName: this.props.name
+		});
+		console.log('Component Did Mount runs for editing a recipe');
+		console.log('THIS.PROPS.RECIPEINFO');
+		console.log(this.props.recipeInfo);
+		// if (this.props.recipeInfo) {
+		if (this.props.ingredients) {
+			this.setState({
+				inputText: this.props.name,
+				textareaText: this.buildStringFromIngredients(this.props.ingredients)
+			});
+
+			this.recipeToEdit = {
+				name: this.props.name,
+				ingredients: this.buildStringFromIngredients(this.props.ingredients)
+			}
+		}
+
+		console.log("this.recipeToEdit is");
+		console.log(this.recipeToEdit);
+	}
+
 	handleSubmit(event) {
 		event.preventDefault(); // making sure it doesn't submit right away
-		console.log("Handle Submit runs");
-		console.log("EVENT");
-		console.log(event);
 		// Change local storage to the file that was submitted.
-
 		var newRecipeDetails = {
 			title: this.state.inputText,
 			ingredients: this.getIngredientsFromString(this.state.textareaText)
 		};
 		// use a callback function?
-		this.props.addRecipe(newRecipeDetails);
+		if (this.recipeToEdit) {
+			console.log("THE DETAILS I AM SENDING TO CHANGE THE STATE ARE");
+			console.log(newRecipeDetails)
+			this.props.modifyRecipe(newRecipeDetails, this.state.originalName); // have to give it its original name
+		} else {
+			this.props.addRecipe(newRecipeDetails);
+		}
+
+		// this.props.addRecipe(newRecipeDetails);
+
 		//
 		// localStorage.setItem({
 		// 	title: this.state.inputText,
@@ -40,8 +74,16 @@ class NewRecipeForm extends Component {
 		this.closeNewRecipeForm();
 	}
 
+	isExistingRecipe() {
+		return this.recipeToEdit;
+	}
+
 	getIngredientsFromString(str) {
 		return str.split(",").map(ingredient => ingredient.trim());
+	}
+
+	buildStringFromIngredients(arr) {
+		return arr.join(', ');
 	}
 
 	render() {
@@ -55,14 +97,16 @@ class NewRecipeForm extends Component {
 					<p>Recipe</p>
 					<input type="text"
 						placeholder="Recipe Name"
-						value={this.state.inputText}
+						value={this.state.inputText }
+						// value={this.state.inputText || this.isExistingRecipe().name}
 						onChange={(event) => this.setState({ inputText: event.target.value })} />
 					</div>
 					<div>
 						<p>Ingredients</p>
 						<textarea
 							placeholder="Enter ingredients, Separated, By commas"
-							value={this.state.textareaText}
+							value={this.state.textareaText }
+							// value={this.state.textareaText || this.isExistingRecipe().ingredients }
 							onChange={(event) => this.setState({ textareaText: event.target.value })}></textarea>
 					</div>
 					<div className="new-recipe-footer">

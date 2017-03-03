@@ -16,6 +16,7 @@ class App extends Component {
 
 		this.addRecipe = this.addRecipe.bind(this);
 		this.deleteRecipe = this.deleteRecipe.bind(this);
+		this.modifyRecipe = this.modifyRecipe.bind(this);
 	}
 
 	componentWillMount() {
@@ -46,6 +47,22 @@ class App extends Component {
 		// how to take out an item from an array - filter?
 	}
 
+	modifyRecipe(recipeInfo, nameBeforeEdit) {
+		// var updatedRecipes = this.state.recipes;
+		this.setState({
+			recipes: this.state.recipes.map((recipe) => {
+				if (recipe.name === nameBeforeEdit) {
+					return {
+						name: recipeInfo.title,
+						ingredients: recipeInfo.ingredients
+					}
+				} else {
+					return recipe;
+				}
+			})
+		});
+	}
+
 	addRecipe(recipeInfo) {
 		var updatedRecipes = this.state.recipes;
 		updatedRecipes.push({
@@ -69,7 +86,10 @@ class App extends Component {
 				<h2>Recipe Box App</h2>
 			</div>
 				<div id="root"></div>
-				<IndexView recipeBank={this.state.recipes} deleteRecipe={this.deleteRecipe} />
+				<IndexView
+					recipeBank={this.state.recipes}
+					modifyRecipe={this.modifyRecipe}
+					deleteRecipe={this.deleteRecipe} />
 				<AddRecipe addRecipe={this.addRecipe} />
       </div>
     );

@@ -12,7 +12,11 @@ class RecipeDetails extends Component {
 
 	handleEdit() {
 			// also needs a name
-			ReactDOM.render(<NewRecipeForm details={this.props.ingredients} />, document.getElementById('new-container'));
+			ReactDOM.render(<NewRecipeForm
+				modifyRecipe={this.props.modifyRecipe}
+				ingredients={this.props.ingredients}
+				name={this.props.name} />,
+				document.getElementById('new-container'));
 	}
 
 	handleDelete(event) {
