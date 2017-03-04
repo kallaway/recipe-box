@@ -89,17 +89,20 @@ class NewRecipeForm extends Component {
 	render() {
 		return (
 			<form className="new-recipe-form" onSubmit={this.handleSubmit}>
-				<div id="new-recipe-header">
+				<div className="new-recipe-header">
 					<p>Add a Recipe</p>
-					<i className="fa fa-times close-form" aria-hidden="true" onClick={this.closeNewRecipeForm}></i>
+					<p className="close-icon" onClick={this.closeNewRecipeForm}>&#10005;</p>
+					{/* <i className="fa fa-times close-form" aria-hidden="true" onClick={this.closeNewRecipeForm}></i> */}
 				</div>
-				<div>
-					<p>Recipe</p>
-					<input type="text"
-						placeholder="Recipe Name"
-						value={this.state.inputText }
-						// value={this.state.inputText || this.isExistingRecipe().name}
-						onChange={(event) => this.setState({ inputText: event.target.value })} />
+				<div className="new-recipe-body">
+					<div>
+						<p>Recipe</p>
+						<input type="text"
+							placeholder="Recipe Name"
+							value={this.state.inputText }
+							// value={this.state.inputText || this.isExistingRecipe().name}
+							onChange={(event) => this.setState({ inputText: event.target.value })}
+						/>
 					</div>
 					<div>
 						<p>Ingredients</p>
@@ -109,6 +112,7 @@ class NewRecipeForm extends Component {
 							// value={this.state.textareaText || this.isExistingRecipe().ingredients }
 							onChange={(event) => this.setState({ textareaText: event.target.value })}></textarea>
 					</div>
+				</div>
 					<div className="new-recipe-footer">
 						<button type="submit" className="add-recipe-button">Add a Recipe</button>
 						<button className="close-form-button" onClick={this.closeNewRecipeForm}>Close</button>

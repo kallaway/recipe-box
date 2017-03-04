@@ -175,14 +175,31 @@ a {
 	width: 90%;
 }
 
-/*// .new-recipe-header {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }*/
+.new-recipe-header {
+  display: flex;
+	flex-direction: row;
+  justify-content: space-between;
+  /*align-items: center;*/
+}
+
+.new-recipe-header p {
+	margin-left: 7px;
+	margin-right: 7px;
+}
+
+.new-recipe-body {
+	display: flex;
+	flex-direction: column;
+	/*justify-content: center;*/
+	align-items: center;
+}
 
 .close-form {
   cursor: pointer;
+}
+
+.close-icon {
+	cursor: pointer;
 }
 
 .AddRecipe {
