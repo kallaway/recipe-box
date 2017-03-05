@@ -55,6 +55,10 @@ a {
 
 /******* MAIN STYLES *******/
 
+.m-font {
+	font-size: 1.2em;
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -92,12 +96,29 @@ a {
 }
 
 .recipe-details {
+	animation-duration: 3s;
+	animation-name: slideinandout;
+	animation-direction: alternate;
+
   width: 90%;
 	color: #000;
   background-color: #FFF;
 	border-radius: 5px;
-	margin: 0 auto;
+	margin: 3px auto;
 	padding: 10px 0;
+}
+
+
+@keyframes slideinandout {
+	from {
+		/*display: none;*/
+
+	}
+
+	to {
+		/*height: 100%;*/
+		/*display: block;*/
+	}
 }
 
 .recipe-details h3 {
@@ -149,13 +170,11 @@ a {
 }
 
 .new-recipe-form {
-
-	animation-duration: 3s;
+	animation-duration: 1s;
   animation-name: slidein;
 
-
   position: absolute;
-  margin-top: 200px;
+  margin-top: 250px;
   padding: 0 15px;
 	min-width: 450px;
 	text-align: left;
@@ -165,6 +184,16 @@ a {
 	border: 1px solid #616161;
 	border-radius: 7px;
 	background-color: #FFF;
+}
+
+@keyframes slidein {
+	from {
+		margin-top: 0px;
+	}
+
+	to {
+		margin-top: 250px;
+	}
 }
 
 .new-recipe-form input {
@@ -179,7 +208,7 @@ a {
   display: flex;
 	flex-direction: row;
   justify-content: space-between;
-  /*align-items: center;*/
+  align-items: center;
 }
 
 .new-recipe-header p {
@@ -191,7 +220,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	/*justify-content: center;*/
-	align-items: center;
+	/*align-items: center;*/
 }
 
 .close-form {
@@ -206,9 +235,9 @@ a {
   border: none;
   border-radius: 15px;
   margin: 10px;
-  width: 200px;
-  height: 50px;
-  font-size: 1.2em;
+  width: 160px;
+  height: 40px;
+  font-size: 1.1em;
   /*color: #001f3f;*/
 	/*color: #7FDBFF;*/
 	color: #FFF;

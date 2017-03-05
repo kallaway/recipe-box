@@ -90,10 +90,11 @@ class NewRecipeForm extends Component {
 		return (
 			<form className="new-recipe-form" onSubmit={this.handleSubmit}>
 				<div className="new-recipe-header">
-					<p>Add a Recipe</p>
+					<p className="m-font">Add a Recipe</p>
 					<p className="close-icon" onClick={this.closeNewRecipeForm}>&#10005;</p>
 					{/* <i className="fa fa-times close-form" aria-hidden="true" onClick={this.closeNewRecipeForm}></i> */}
 				</div>
+				<hr />
 				<div className="new-recipe-body">
 					<div>
 						<p>Recipe</p>
