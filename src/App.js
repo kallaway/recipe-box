@@ -20,10 +20,28 @@ class App extends Component {
 	}
 
 	componentWillMount() {
-		this.setState({
-			// recipes: localStorage.getItem('recipes')
-			recipes: localStorageTest
-		})
+		// check if localStorage already has an item 'recipes'
+		// and if that contains at least one recipe?
+		// if so, set the state to that
+		var shouldStorageRecipesLoad = JSON.parse(localStorage.getItem('recipes')) ? true : false; // can be changed
+
+		if (shouldStorageRecipesLoad) {
+			this.setState({
+				recipes: JSON.parse(localStorage.getItem('recipes'))
+			});
+		} else {
+			this.setState({
+				recipes: localStorageTest
+			})
+		}
+
+		// Found out that localStorage only supports strings
+		// now I can fix the rest of the app
+
+		// this.setState({
+		// 	// recipes: localStorage.getItem('recipes')
+		// 	recipes: localStorageTest
+		// })
 		console.log("component Will Mount runs for app, and recipes is:");
 		console.log(this.state.recipes);
 		console.log(localStorage.getItem('recipes'));
@@ -104,8 +122,8 @@ class App extends Component {
 
 // var localStorageTest = localStorage;
 
-// var localStorageTest = [
-//   {
+// var localStorageTest2 = {
+//   1: {
 //     name: 'Pumpkin Pie',
 //     ingredients: [
 //       'Pumpkin Puree',
@@ -115,7 +133,7 @@ class App extends Component {
 //       'Pie Crust'
 //     ]
 //   },
-//   {
+//   2: {
 //     name: 'Spaghetti',
 //     ingredients: [
 //       'Noodles',
@@ -123,7 +141,7 @@ class App extends Component {
 //       '(Optional) Meatballs'
 //     ]
 //   },
-//   {
+//   3: {
 //     name: 'Onion Pie',
 //     ingredients: [
 //       'Onion',
@@ -131,8 +149,8 @@ class App extends Component {
 //       'Sounds Yummy right?'
 //     ]
 //   }
-// ];
+// };
 
-localStorage.setItem('recipes', localStorageTest);
+localStorage.setItem('recipes', JSON.stringify(localStorageTest));
 
 export default App;
