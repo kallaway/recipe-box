@@ -7,33 +7,55 @@ import AddRecipe from './components/add-recipe';
 
 import originalRecipes from './data/original-recipes';
 
-var localStorageTest = originalRecipes;
+// var localStorageTest = originalRecipes;
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { recipes: '' };
+		console.log('SUPER APP RUNS');
+		if (!localStorage.getItem('recipes')) {
+			localStorage.setItem('recipes', JSON.stringify(originalRecipes));
+			this.state = { recipes: originalRecipes };
+		} else {
+			this.state = { recipes: JSON.parse(localStorage.getItem('recipes')) };
+		}
+
+		// this.state = { recipes: '' };
 
 		this.addRecipe = this.addRecipe.bind(this);
 		this.deleteRecipe = this.deleteRecipe.bind(this);
 		this.modifyRecipe = this.modifyRecipe.bind(this);
+
+		console.log("IN THE BEGINNING WHEN WE CHECK IF RECIPES ARE IN THE LOCALSTORAGE");
+		console.log(localStorage.getItem('recipes'));
+		// experiment
 	}
 
 	componentWillMount() {
+		// localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
+
+
+
 		// check if localStorage already has an item 'recipes'
 		// and if that contains at least one recipe?
 		// if so, set the state to that
-		var shouldStorageRecipesLoad = JSON.parse(localStorage.getItem('recipes')) ? true : false; // can be changed
-
-		if (shouldStorageRecipesLoad) {
-			this.setState({
-				recipes: JSON.parse(localStorage.getItem('recipes'))
-			});
-		} else {
-			this.setState({
-				recipes: localStorageTest
-			})
-		}
+		// var shouldStorageRecipesLoad = JSON.parse(localStorage.getItem('recipes')) ? true : false; // can be changed
+		// if (localStorage.getItem('recipes') !== "") {
+		// 	console.log("IF THIS RUNS, it means the recipes were not empty in the localStorage");
+		// 	localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
+		// 	// this.setState({
+		// 	// 	recipes: JSON.parse(localStorage.getItem('recipes'))
+		// 	// });
+		// } else {
+		// 	// if recipes are not in localStorage yet
+		// 	// use the default list of recipes
+		// 	console.log("IF THIS RUNS, it means the recipes were empty in the localStorage");
+		// 	this.setState({
+		// 		recipes: originalRecipes
+		// 	})
+		// 	// push them into localStorage
+		// 	localStorage.setItem('recipes', JSON.stringify(originalRecipes));
+		// }
 
 		// Found out that localStorage only supports strings
 		// now I can fix the rest of the app
@@ -48,8 +70,9 @@ class App extends Component {
 	}
 
 	componentWillUnmount() {
-		// localStorage.
-		localStorage.setItem('recipes', this.state.recipes);
+		localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
+
+		// localStorage.setItem('recipes', this.state.recipes);
 		console.log("component Will UNMount runs for app, and recipes is:");
 		console.log(this.state.recipes);
 	}
@@ -59,8 +82,10 @@ class App extends Component {
 			recipes: this.state.recipes.filter((recipe) => {
 				return recipe.name !== recipeInfo.title;
 			})
+
 		});
 
+		localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
 
 		// how to take out an item from an array - filter?
 	}
@@ -79,6 +104,7 @@ class App extends Component {
 				}
 			})
 		});
+		localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
 	}
 
 	addRecipe(recipeInfo) {
@@ -92,6 +118,7 @@ class App extends Component {
 			recipes: updatedRecipes
 		})
 
+		localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
 		// After it adds a recipe it should also close the form down
 	}
 
@@ -113,44 +140,5 @@ class App extends Component {
     );
   }
 }
-
-// <div className="App-header">
-// 	<img src={logo} className="App-logo" alt="logo" />
-// 	<h2>Recipe Box App</h2>
-// </div>
-
-
-// var localStorageTest = localStorage;
-
-// var localStorageTest2 = {
-//   1: {
-//     name: 'Pumpkin Pie',
-//     ingredients: [
-//       'Pumpkin Puree',
-//       'Sweetened Condensed Milk',
-//       'Eggs',
-//       'Pumpkin Pie Spice',
-//       'Pie Crust'
-//     ]
-//   },
-//   2: {
-//     name: 'Spaghetti',
-//     ingredients: [
-//       'Noodles',
-//       'Tomato Sauce',
-//       '(Optional) Meatballs'
-//     ]
-//   },
-//   3: {
-//     name: 'Onion Pie',
-//     ingredients: [
-//       'Onion',
-//       'Pie Crust',
-//       'Sounds Yummy right?'
-//     ]
-//   }
-// };
-
-localStorage.setItem('recipes', JSON.stringify(localStorageTest));
 
 export default App;
