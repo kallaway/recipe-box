@@ -116,7 +116,7 @@ class NewRecipeForm extends Component {
 				</div>
 					<div className="new-recipe-footer">
 						<button type="submit" className="add-recipe-button">Add a Recipe</button>
-						<button className="close-form-button" onClick={this.closeNewRecipeForm}>Close</button>
+						<button className="edit-btn" onClick={this.closeNewRecipeForm}>Close</button>
 					</div>
 				</form>
 			)

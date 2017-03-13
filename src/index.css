@@ -24,6 +24,8 @@ button {
 	margin: 5px;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	border: 1px solid #DDD;
+	border-radius: 5px;
 }
 
 input,
@@ -38,6 +40,9 @@ p {
 	font-size: 0.9em;
 }
 
+hr {
+	margin: 0 10px;
+}
 
 /* new css */
 /*$aqua: #7FDBFF;
@@ -57,6 +62,8 @@ a {
 
 .m-font {
 	font-size: 1.2em;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .App {
@@ -156,17 +163,29 @@ a {
 
 .delete-btn {
 	background-color: #D9534F;
+	border-color: #D43F3A;
+}
+
+.delete-btn:active,
+.delete-btn:hover {
+	background-color: #C9302C;
 }
 
 .edit-btn {
 	color: #000;
+	background-color: #FFF;
+	border-color: #CCC;
+}
+
+.edit-btn:active,
+.edit-btn:hover {
+	background-color: #E6E6E6;
 }
 
 #new-container {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .new-recipe-form {
@@ -234,7 +253,7 @@ a {
 .AddRecipe {
   border: none;
   border-radius: 15px;
-  margin: 10px;
+  margin: 15px;
   width: 160px;
   height: 40px;
   font-size: 1.1em;

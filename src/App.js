@@ -34,36 +34,8 @@ class App extends Component {
 	componentWillMount() {
 		// localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
 
+		// make it so that it's impossible to add a recipe without a name
 
-
-		// check if localStorage already has an item 'recipes'
-		// and if that contains at least one recipe?
-		// if so, set the state to that
-		// var shouldStorageRecipesLoad = JSON.parse(localStorage.getItem('recipes')) ? true : false; // can be changed
-		// if (localStorage.getItem('recipes') !== "") {
-		// 	console.log("IF THIS RUNS, it means the recipes were not empty in the localStorage");
-		// 	localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
-		// 	// this.setState({
-		// 	// 	recipes: JSON.parse(localStorage.getItem('recipes'))
-		// 	// });
-		// } else {
-		// 	// if recipes are not in localStorage yet
-		// 	// use the default list of recipes
-		// 	console.log("IF THIS RUNS, it means the recipes were empty in the localStorage");
-		// 	this.setState({
-		// 		recipes: originalRecipes
-		// 	})
-		// 	// push them into localStorage
-		// 	localStorage.setItem('recipes', JSON.stringify(originalRecipes));
-		// }
-
-		// Found out that localStorage only supports strings
-		// now I can fix the rest of the app
-
-		// this.setState({
-		// 	// recipes: localStorage.getItem('recipes')
-		// 	recipes: localStorageTest
-		// })
 		console.log("component Will Mount runs for app, and recipes is:");
 		console.log(this.state.recipes);
 		console.log(localStorage.getItem('recipes'));
