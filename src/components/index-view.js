@@ -13,8 +13,6 @@ class IndexView extends Component {
 		if (this.props.recipeBank === '') {
 			return <div>Loading...</div>
 		} else {
-			console.log('This is what RecipeBox is currently is');
-			console.log(typeof this.props.recipeBank);
 			return (
 				<div className="IndexView">
 					<ul id="IndexViewList">

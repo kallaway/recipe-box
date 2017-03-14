@@ -25,9 +25,6 @@ class NewRecipeForm extends Component {
 		this.setState({
 			originalName: this.props.name
 		});
-		console.log('Component Did Mount runs for editing a recipe');
-		console.log('THIS.PROPS.RECIPEINFO');
-		console.log(this.props.recipeInfo);
 		// if (this.props.recipeInfo) {
 		if (this.props.ingredients) {
 			this.setState({
@@ -40,34 +37,21 @@ class NewRecipeForm extends Component {
 				ingredients: this.buildStringFromIngredients(this.props.ingredients)
 			}
 		}
-
-		console.log("this.recipeToEdit is");
-		console.log(this.recipeToEdit);
 	}
 
 	handleSubmit(event) {
 		event.preventDefault(); // making sure it doesn't submit right away
 		// Change local storage to the file that was submitted.
 		var newRecipeDetails = {
-			title: this.state.inputText,
+			title: this.state.inputText.trim() ? this.state.inputText : 'Untitled',
 			ingredients: this.getIngredientsFromString(this.state.textareaText)
 		};
 		// use a callback function?
 		if (this.recipeToEdit) {
-			console.log("THE DETAILS I AM SENDING TO CHANGE THE STATE ARE");
-			console.log(newRecipeDetails)
 			this.props.modifyRecipe(newRecipeDetails, this.state.originalName); // have to give it its original name
 		} else {
 			this.props.addRecipe(newRecipeDetails);
 		}
-
-		// this.props.addRecipe(newRecipeDetails);
-
-		//
-		// localStorage.setItem({
-		// 	title: this.state.inputText,
-		// 	ingredients: this.getIngredientsFromString(this.state.textareaText)
-		// });
 
 		//add a check - if there is no title or no ingredients, don't add them to the table.
 		// add submission on Enter?

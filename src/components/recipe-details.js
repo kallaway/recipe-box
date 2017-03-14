@@ -24,7 +24,6 @@ class RecipeDetails extends Component {
 			title: this.props.name,
 			ingredients: this.props.ingredients // might not be needed
 		}
-		console.log("Handle Delete runs inside the Recipe Details");
 		this.props.deleteRecipe(recipeDetails);
 	}
 

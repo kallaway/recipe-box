@@ -12,7 +12,6 @@ import originalRecipes from './data/original-recipes';
 class App extends Component {
 	constructor(props) {
 		super(props);
-		console.log('SUPER APP RUNS');
 		if (!localStorage.getItem('recipes')) {
 			localStorage.setItem('recipes', JSON.stringify(originalRecipes));
 			this.state = { recipes: originalRecipes };
@@ -20,33 +19,13 @@ class App extends Component {
 			this.state = { recipes: JSON.parse(localStorage.getItem('recipes')) };
 		}
 
-		// this.state = { recipes: '' };
-
 		this.addRecipe = this.addRecipe.bind(this);
 		this.deleteRecipe = this.deleteRecipe.bind(this);
 		this.modifyRecipe = this.modifyRecipe.bind(this);
-
-		console.log("IN THE BEGINNING WHEN WE CHECK IF RECIPES ARE IN THE LOCALSTORAGE");
-		console.log(localStorage.getItem('recipes'));
-		// experiment
-	}
-
-	componentWillMount() {
-		// localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
-
-		// make it so that it's impossible to add a recipe without a name
-
-		console.log("component Will Mount runs for app, and recipes is:");
-		console.log(this.state.recipes);
-		console.log(localStorage.getItem('recipes'));
 	}
 
 	componentWillUnmount() {
 		localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
-
-		// localStorage.setItem('recipes', this.state.recipes);
-		console.log("component Will UNMount runs for app, and recipes is:");
-		console.log(this.state.recipes);
 	}
 
 	deleteRecipe(recipeInfo) {
@@ -58,7 +37,6 @@ class App extends Component {
 		});
 
 		localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
-
 		// how to take out an item from an array - filter?
 	}
 

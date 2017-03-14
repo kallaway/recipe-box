@@ -103,7 +103,7 @@ a {
 }
 
 .recipe-details {
-	animation-duration: 3s;
+	animation-duration: 0.3s;
 	animation-name: slideinandout;
 	animation-direction: alternate;
 
@@ -119,11 +119,11 @@ a {
 @keyframes slideinandout {
 	from {
 		/*display: none;*/
-
+		/*height: 0;*/
 	}
 
 	to {
-		/*height: 100%;*/
+		/*height: 500px;*/
 		/*display: block;*/
 	}
 }
